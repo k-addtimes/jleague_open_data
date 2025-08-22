@@ -2,10 +2,12 @@
 本オープンデータは、Jリーグおよび日本サッカー協会や各種データをもとに収集した施設、チーム、試合日程データをcsvやjsonに変換したファイルを公開している。
 
 # 構成
+
+## ルートフォルダ
 - competition_frame_ids.csv :: 競技カテゴリ
 - current_schedule_file.csv :: 最新年度のJリーグ試合日程
 - j_league_stadium_data.csv :: Jリーグ使用競技場
-- team_ids.csv :: Jリーグ在籍チームデータ(過去在籍含む
+- team_ids.csv :: Jリーグ在籍チームデータ(過去在籍含む)
 
 ## reshapeフォルダ
 各種ファイルのデータをidに基づくバインドを行ったもの、カラムを再整理したものを格納する。
