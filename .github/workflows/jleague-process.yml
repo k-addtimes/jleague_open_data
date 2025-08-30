@@ -1,0 +1,40 @@
+name: Process J.League schedule when source updates
+
+on:
+  push:
+    paths:
+      - current_schedule_file.csv
+      - team_ids.csv
+      - '!processed/**'     # 出力先は除外（無限ループ防止）
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run processor
+        run: |
+          python3 scripts/add_team_ids.py \
+            --schedule current_schedule_file.csv \
+            --teams team_ids.csv \
+            --out processed/current_schedule_with_ids.csv \
+            --home_idx 5 --away_idx 7 \
+            --header "year, category, term, date, kickoffdate, homeTeam, score, awayTeam, stadiumName, visitors, other, homeTeamId, awayTeamId"
+
+
+      - name: Commit & push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: attach teamIds to schedule (auto)"
+          branch: ${{ github.ref_name }}
