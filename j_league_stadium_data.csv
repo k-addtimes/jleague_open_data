@@ -8,7 +8,7 @@ index,スタジアム名,スタジアム略称,スタジアム名（英字）,�
 6,Uvanceとどろきスタジアム by Fujitsu,Ｕ等々力,Kawasaki Todoroki Stadium,神奈川県川崎市中原区等々力1-1,川崎,26827
 7,日産スタジアム,日産ス,Nissan Stadium,神奈川県横浜市港北区小机町3300,横浜FM,71822
 8,レモンガススタジアム平塚,レモンＳ,Lemon Gas Stadium Hiratsuka,神奈川県平塚市大原1-1,湘南,15380
-9,ＩＡＩスタジアム日本平,アイスタ,IAI Stadium Nihondaira,静岡県静岡市清水区村松3880-1,清水,19496
+9,ＩＡＩスタジアム日本平,アイスタ,ＩＡＩ Stadium Nihondaira,静岡県静岡市清水区村松3880-1,清水,19496
 10,ヤマハスタジアム（磐田）,ヤマハ,Yamaha Stadium(Iwata),静岡県磐田市新貝2500,磐田,15165
 11,豊田スタジアム,豊田ス,Toyota Stadium,愛知県豊田市千石町7-2,名古屋,43739
 12,サンガスタジアム ｂｙ ＫＹＯＣＥＲＡ,サンガＳ,SANGA STADIUM by KYOCERA,京都府亀岡市追分町,京都,21623
@@ -32,7 +32,7 @@ index,スタジアム名,スタジアム略称,スタジアム名（英字）,�
 32,ＪＩＴ リサイクルインク スタジアム,ＪＩＴス,JIT Recycle Ink Stadium,山梨県甲府市小瀬町840,甲府,15853
 33,デンカビッグスワンスタジアム,デンカＳ,DENKA BIG SWAN STADIUM,新潟県新潟市中央区清五郎67-12,新潟,41684
 34,金沢ゴーゴーカレースタジアム,石川西部,Kanazawa Go Go Curry Stadium,⽯川県⾦沢市磯部町ロ75番1,金沢,10444
-35,JFE晴れの国スタジアム,JFEス,CITY LIGHT STADIUM,岡山県岡山市北区いずみ町2-1−11,岡山,15479
+35,JFE晴れの国スタジアム,ＪＦＥス,CITY LIGHT STADIUM,岡山県岡山市北区いずみ町2-1−11,岡山,15479
 36,維新みらいふスタジアム,みらスタ,Ishin Me-Life Stadium,山口県山口市維新公園4-1-1,山口,15115
 37,鳴門・大塚スポーツパーク ポカリスエットスタジアム,鳴門大塚,POCARI SWEAT Stadium,徳島県鳴門市撫養町立岩字四枚61,徳島,17924
 38,PEACE STADIUM Connected by Softbank,ピースタ,PEACE Stadium Nagasaki,長崎県長崎市幸町６−７−１,長崎,20027
@@ -60,14 +60,16 @@ index,スタジアム名,スタジアム略称,スタジアム名（英字）,�
 60,札幌厚別公園競技場,札幌厚別,Sapporo Atsubetsu Stadium,北海道札幌市厚別区上野幌3条1-2-1,札幌,17493
 61,北上総合運動公園北上陸上競技場,北上,Kitakami Stadium,岩手県北上市相去町高前檀27-36,盛岡,6376
 62,会津総合運動公園あいづ陸上競技場,あいづ,Aizu Athletic Park Stadium,福島県会津若松市門田町大字御山字村上164,福島,7290
-63,CITY FOOTBALL STATION,CFS,Koriyama Seibu Soccer Field,栃木県栃木市岩舟町三谷１０３８−１,栃木C,5085
+63,CITY FOOTBALL STATION,ＣＦＳ,Koriyama Seibu Soccer Field,栃木県栃木市岩舟町三谷１０３８−１,栃木C,5085
 64,カンセキスタジアムとちぎ,カンセキ,kanseki Stadium Tochigi,栃木県宇都宮市西川田4-1-1,栃木SC,24670
 65,東大阪市花園ラグビー場,花園,HANAZONO RUGBY STADIUM,大阪府東大阪市松原南一丁目1-1,FC大阪,27346
-66,ロートフィールド奈良,ロートF,Rohto Field Nara,奈良県奈良市法蓮佐保山４丁目５−１,奈良,30600
+66,ロートフィールド奈良,ロートＦ,Rohto Field Nara,奈良県奈良市法蓮佐保山４丁目５−１,奈良,30600
 67,Axisバードスタジアム,Axis,Axis Bird Stadium,鳥取県鳥取市蔵田４２３,鳥取,16033
 68,高知県立春野総合運動公園陸上競技場,春野陸,Kochi Haruno Field,高知県高知市春野町芳原2485,高知,25000
 69,エコパスタジアム,エコパ,Ecopa Stadium,静岡県袋井市愛野2300-1,磐田,51697
 70,チュウブＹＡＪＩＮスタジアム,チュスタ,CHUBU YAJIN STADIUM,鳥取県米子市安倍1-1,鳥取,7044
 71,セービング陸上競技場,ＳＶ下関,Saving Athletics Stadium,山口県下関市向洋町1-10-1,山口,7016
+72,キューアンドエースタジアムみやぎ,Ｑスタ,Q&A Stadium Miyagi,宮城県宮城郡利府町菅谷字舘40-1,仙台,49133
+
 
 
