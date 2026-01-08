@@ -9,7 +9,7 @@
 - j_league_stadium_data.csv :: Jリーグ使用競技場
 - team_ids.csv :: Jリーグ在籍チームデータ(過去在籍含む)
 
-## reshapeフォルダ
+## processedフォルダ
 各種ファイルのデータをidに基づくバインドを行ったもの、カラムを再整理したものを格納する。
 
 # データソース
