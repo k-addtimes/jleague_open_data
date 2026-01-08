@@ -16,3 +16,10 @@
 ``` https://data.j-league.or.jp/SFMS01/ ```
 競技カテゴリと試合日程、チームデータは上記のデータを解析取得している。
 Jリーグ使用競技場は、Jリーグが公開する資料をもとにアディショナルタイムズ編集部がcsvに書き起こしたものである。
+
+# 変更内容
+- current_schedule_file.csv :: 
+  - category : J1 -> 1 に変更
+  - competitionName : 大会名を追加
+  - jLeagueCompetitionId : Jリーグ大会IDを追加
+  - competitionId : 独自大会IDを追加
