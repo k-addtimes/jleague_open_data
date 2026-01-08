@@ -32,7 +32,6 @@ jobs:
             --schedule current_schedule_file.csv \
             --teams team_ids.csv \
             --out processed/current_schedule_with_ids.csv \
-            --home_idx 5 --away_idx 7
 
       - name: Commit & push changes
         uses: stefanzweifel/git-auto-commit-action@v5
