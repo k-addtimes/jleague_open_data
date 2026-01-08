@@ -19,10 +19,10 @@ JLEAGUE_COMP_MAP = {
 COMPETITION_ID_MAP = {
     "明治安田J1百年構想 EASTグループ": "35-E",
     "明治安田J1百年構想 WESTグループ": "35-W",
-    "明治安田Ｊ２・Ｊ３百年構想 EAST-Aグループ": "36-E-A",
-    "明治安田Ｊ２・Ｊ３百年構想 EAST-Bグループ": "36-E-B",
-    "明治安田Ｊ２・Ｊ３百年構想 WEST-Aグループ": "36-W-A",
-    "明治安田Ｊ２・Ｊ３百年構想 WEST-Bグループ": "36-W-B",
+    "明治安田J2・J3百年構想 EAST-Aグループ": "36-E-A",
+    "明治安田J2・J3百年構想 EAST-Bグループ": "36-E-B",
+    "明治安田J2・J3百年構想 WEST-Aグループ": "36-W-A",
+    "明治安田J2・J3百年構想 WEST-Bグループ": "36-W-B",
 }
 
 def build_team_map(teams_csv_path):
