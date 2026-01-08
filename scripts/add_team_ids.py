@@ -7,16 +7,32 @@ from pathlib import Path
 EXPECTED_HEADER = [
     "year", "category", "term", "date", "kickoffdate",
     "homeTeam", "score", "awayTeam", "stadiumName",
-    "visitors", "other", "homeTeamId", "awayTeamId"
+    "visitors", "other", "homeTeamId", "awayTeamId",
+    "competitionName", "jLeagueCompetitionId", "competitionId"
 ]
+# competitionName -> IDs（GAS側で表記は固定されている前提）
+JLEAGUE_COMP_MAP = {
+    "明治安田J1百年構想": "35",
+    "明治安田J2・J3百年構想": "36",
+}
+
+COMPETITION_ID_MAP = {
+    "明治安田J1百年構想 EASTグループ": "35-E",
+    "明治安田J1百年構想 WESTグループ": "35-W",
+    "明治安田Ｊ２・Ｊ３百年構想 EAST-Aグループ": "36-E-A",
+    "明治安田Ｊ２・Ｊ３百年構想 EAST-Bグループ": "36-E-B",
+    "明治安田Ｊ２・Ｊ３百年構想 WEST-Aグループ": "36-W-A",
+    "明治安田Ｊ２・Ｊ３百年構想 WEST-Bグループ": "36-W-B",
+}
 
 def build_team_map(teams_csv_path):
     team_map = {}
+    team_cat_map = {}
     with open(teams_csv_path, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
         rows = list(reader)
         if not rows:
-            return team_map
+            return team_id_map, team_cat_map
 
         # 1行目が "id" 等ならヘッダとみなしてスキップ
         start_idx = 0
@@ -25,13 +41,21 @@ def build_team_map(teams_csv_path):
             start_idx = 1
 
         for r in rows[start_idx:]:
-            if len(r) < 3:
+            # 想定: [id, teamName, shortName, category]
+            if len(r) < 4:
                 continue
             team_id = (r[0] or "").strip()
+            team_name = (r[1] or "").strip()
             short_name = (r[2] or "").strip()
-            if short_name:
-                team_map[short_name] = team_id
-    return team_map
+            category = (r[3] or "").strip()
+            for key in (team_name, short_name):
+                if not key:
+                    continue
+                if team_id:
+                    team_id_map[key] = team_id
+                if category:
+                    team_cat_map[key] = category
+    return team_id_map, team_cat_map
 
 def process_schedule(schedule_csv_path, team_map, out_csv_path,
                      home_name_idx=5, away_name_idx=7):
@@ -55,12 +79,29 @@ def process_schedule(schedule_csv_path, team_map, out_csv_path,
         if len(r) < 11:  # 元の11列までは必須
             r = r + [""] * (11 - len(r))
 
-        home_name = (r[home_name_idx] or "").strip()
-        away_name = (r[away_name_idx] or "").strip()
-        home_id = team_map.get(home_name, "")
-        away_id = team_map.get(away_name, "")
+        year, competitionName, term, date, kickoff, home, score, away, stadium, visitors, other = [
+            (x or "").strip() for x in r[:11]
+        ]
+        home_id = team_map.get(home, "")
+        away_id = team_map.get(away, "")
+        category = team_cat_map.get(home, "") or team_cat_map.get(away, "") or ""
 
-        out_rows.append(r[:11] + [home_id, away_id])
+        # competition ids
+        jLeagueCompetitionId = JLEAGUE_COMP_MAP.get(
+            "明治安田J1百年構想" if competitionName.startswith("明治安田J1百年構想")
+            else "明治安田J2・J3百年構想" if competitionName.startswith("明治安田J2・J3百年構想")
+            else "",
+            ""
+        )
+        competitionId = COMPETITION_ID_MAP.get(competitionName, "")
+
+        out_rows.append([
+            year, category, term, date, kickoff,
+            home, score, away, stadium,
+            visitors, other,
+            home_id, away_id,
+            competitionName, jLeagueCompetitionId, competitionId
+        ])
 
     # 出力
     with open(out_path, 'w', newline='', encoding='utf-8') as fout:
@@ -73,8 +114,6 @@ def main():
     ap.add_argument("--schedule", required=True, help="path to current_schedule_file.csv")
     ap.add_argument("--teams", required=True, help="path to team_ids.csv")
     ap.add_argument("--out", required=True, help="output CSV path")
-    ap.add_argument("--home_idx", type=int, default=5, help="home team name column index")
-    ap.add_argument("--away_idx", type=int, default=7, help="away team name column index")
     args = ap.parse_args()
 
     team_map = build_team_map(args.teams)
