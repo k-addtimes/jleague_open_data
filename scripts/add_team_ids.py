@@ -116,7 +116,7 @@ def main():
     ap.add_argument("--out", required=True, help="output CSV path")
     args = ap.parse_args()
 
-    team_map = build_team_map(args.teams)
+    team_id_map, team_cat_map = build_team_maps(args.teams)
     process_schedule(args.schedule, team_map, args.out, args.home_idx, args.away_idx)
 
 if __name__ == "__main__":
