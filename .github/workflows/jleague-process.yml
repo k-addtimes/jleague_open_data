@@ -5,8 +5,10 @@ on:
     paths:
       - current_schedule_file.csv
       - team_ids.csv
-      - '!processed/**'     # 出力先は除外（無限ループ防止）
-
+    paths-ignore:
+      - processed/**    # 出力先は除外（無限ループ防止）
+  workflow_dispatch:
+  
 permissions:
   contents: write
 
