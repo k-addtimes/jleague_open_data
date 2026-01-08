@@ -57,8 +57,7 @@ def build_team_maps(teams_csv_path):
                     team_cat_map[key] = category
     return team_id_map, team_cat_map
 
-def process_schedule(schedule_csv_path, team_map, out_csv_path,
-                     home_name_idx=5, away_name_idx=7):
+def process_schedule(schedule_csv_path, team_id_map, team_cat_map, out_csv_path):
     out_path = Path(out_csv_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -67,7 +66,6 @@ def process_schedule(schedule_csv_path, team_map, out_csv_path,
         rows = [list(r) for r in reader]
 
     if not rows:
-        # 空ならヘッダだけ出力
         with open(out_path, 'w', newline='', encoding='utf-8') as fout:
             writer = csv.writer(fout)
             writer.writerow(EXPECTED_HEADER)
@@ -75,18 +73,17 @@ def process_schedule(schedule_csv_path, team_map, out_csv_path,
 
     out_rows = []
     for r in rows:
-        # 足りない列をパディング
-        if len(r) < 11:  # 元の11列までは必須
+        if len(r) < 11:
             r = r + [""] * (11 - len(r))
 
         year, competitionName, term, date, kickoff, home, score, away, stadium, visitors, other = [
             (x or "").strip() for x in r[:11]
         ]
-        home_id = team_map.get(home, "")
-        away_id = team_map.get(away, "")
+
+        home_id = team_id_map.get(home, "")
+        away_id = team_id_map.get(away, "")
         category = team_cat_map.get(home, "") or team_cat_map.get(away, "") or ""
 
-        # competition ids
         jLeagueCompetitionId = JLEAGUE_COMP_MAP.get(
             "明治安田J1百年構想" if competitionName.startswith("明治安田J1百年構想")
             else "明治安田J2・J3百年構想" if competitionName.startswith("明治安田J2・J3百年構想")
@@ -103,11 +100,11 @@ def process_schedule(schedule_csv_path, team_map, out_csv_path,
             competitionName, jLeagueCompetitionId, competitionId
         ])
 
-    # 出力
     with open(out_path, 'w', newline='', encoding='utf-8') as fout:
         writer = csv.writer(fout)
-        writer.writerow(EXPECTED_HEADER)  # 必ず先頭に固定ヘッダ
+        writer.writerow(EXPECTED_HEADER)
         writer.writerows(out_rows)
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -117,7 +114,8 @@ def main():
     args = ap.parse_args()
 
     team_id_map, team_cat_map = build_team_maps(args.teams)
-    process_schedule(args.schedule, team_map, args.out, args.home_idx, args.away_idx)
+    print("DEBUG args.out:", args.out, type(args.out))
+    process_schedule(args.schedule, team_id_map, team_cat_map, args.out)
 
 if __name__ == "__main__":
     main()
