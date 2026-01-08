@@ -3,8 +3,9 @@ name: Process J.League schedule when source updates
 on:
   push:
     paths:
-      - "current_schedule_file.csv"
-      - "team_ids.csv"
+      - "**/current_schedule_file.csv"
+      - "**/team_ids.csv"
+  workflow_dispatch:
   
 permissions:
   contents: write
