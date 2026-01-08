@@ -25,7 +25,7 @@ COMPETITION_ID_MAP = {
     "明治安田J2・J3百年構想 WEST-Bグループ": "36-W-B",
 }
 
-def build_team_map(teams_csv_path):
+def build_team_maps(teams_csv_path):
     team_map = {}
     team_cat_map = {}
     with open(teams_csv_path, newline='', encoding='utf-8') as f:
