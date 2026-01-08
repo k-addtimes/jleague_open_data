@@ -26,7 +26,7 @@ COMPETITION_ID_MAP = {
 }
 
 def build_team_maps(teams_csv_path):
-    team_map = {}
+    team_id_map = {}
     team_cat_map = {}
     with open(teams_csv_path, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
