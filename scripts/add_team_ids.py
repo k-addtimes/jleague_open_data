@@ -117,6 +117,7 @@ def main():
     args = ap.parse_args()
 
     team_id_map, team_cat_map = build_team_maps(args.teams)
+    print("DEBUG args.out:", args.out, type(args.out))
     process_schedule(args.schedule, team_id_map, team_cat_map, args.out)
 
 if __name__ == "__main__":
