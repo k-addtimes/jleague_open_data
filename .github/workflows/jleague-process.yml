@@ -5,8 +5,6 @@ on:
     paths:
       - current_schedule_file.csv
       - team_ids.csv
-    paths-ignore:
-      - processed/**    # 出力先は除外（無限ループ防止）
   workflow_dispatch:
   
 permissions:
@@ -14,6 +12,9 @@ permissions:
 
 jobs:
   build:
+  
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'attach teamIds to schedule (auto)') }}
+  
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
